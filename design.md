@@ -1,0 +1,13 @@
+- Commodity - float.
+  - resource_id - string
+  - resource_name - string
+
+- Factory
+  - flag indicating if it's automatic (generates every second) or manual (generates per click)
+  - generate a resource per click/second
+  - consumes a set of resources per second/click
+  - level: current level.
+  - upgrade: increase the amount of resources generated per click by X% with each level
+  - upgrade_price: set of resources with quantities needed to upgrade
+  - upgrade_multiplier: increase the amount of resources required to upgrade by X% with each level
+  - retires: set of factories that disappear when this factory is bought (level 0 -> level 1)
