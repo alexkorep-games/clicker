@@ -1,115 +1,43 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://scenes/logic.gd" type="Script" id=1]
 [ext_resource path="res://scenes/main.gd" type="Script" id=2]
 [ext_resource path="res://scenes/commodity/commodity.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/factory/factory.tscn" type="PackedScene" id=4]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
 
-[node name="Logic" type="Node" parent="."]
-unique_name_in_owner = true
-script = ExtResource( 1 )
-
-[node name="ScoreRow" type="Control" parent="."]
-margin_right = 83.0
-margin_bottom = 40.0
-
-[node name="Label" type="Label" parent="ScoreRow"]
-margin_left = 6.0
-margin_top = 27.0
-margin_right = 46.0
-margin_bottom = 41.0
-text = "Score"
-
-[node name="ScoreLabel" type="Label" parent="ScoreRow"]
-unique_name_in_owner = true
-margin_left = 116.0
-margin_top = 28.0
-margin_right = 156.0
-margin_bottom = 42.0
-text = "0"
-
-[node name="ScorePerlClickRow" type="Control" parent="."]
-margin_left = 2.0
-margin_top = 42.0
-margin_right = 85.0
-margin_bottom = 83.0
-
-[node name="Label" type="Label" parent="ScorePerlClickRow"]
-margin_left = 6.0
-margin_top = 25.0
-margin_right = 99.0
-margin_bottom = 39.0
-text = "Score per click"
-
-[node name="ScorePerClickLabel" type="Label" parent="ScorePerlClickRow"]
-unique_name_in_owner = true
-margin_left = 115.0
-margin_top = 26.0
-margin_right = 155.0
-margin_bottom = 40.0
-text = "0"
-
-[node name="ScorePerClickUpgradeButton" type="Button" parent="ScorePerlClickRow"]
-unique_name_in_owner = true
-margin_left = 15.0
-margin_top = 41.0
-margin_right = 162.0
-margin_bottom = 61.0
-text = "Upgrade for"
-
-[node name="AutoClickerRow" type="Control" parent="."]
-margin_left = 3.0
-margin_top = 87.0
-margin_right = 86.0
-margin_bottom = 127.0
-
-[node name="Label" type="Label" parent="AutoClickerRow"]
-margin_left = 6.0
-margin_top = 27.0
-margin_right = 46.0
-margin_bottom = 41.0
-text = "Auto click rate"
-
-[node name="AutoClickRateLabel" type="Label" parent="AutoClickerRow"]
-unique_name_in_owner = true
-margin_left = 115.0
-margin_top = 26.0
-margin_right = 155.0
-margin_bottom = 40.0
-text = "0"
-
-[node name="AutoClickUpgradeButton" type="Button" parent="AutoClickerRow"]
-unique_name_in_owner = true
-margin_left = 16.0
-margin_top = 45.0
-margin_right = 160.0
-margin_bottom = 65.0
-text = "Upgrade for"
-
-[node name="Button" type="Button" parent="."]
-anchor_top = 1.0
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -552.0
-margin_bottom = -127.0
-text = "Click"
 
-[node name="NewGameButton" type="Button" parent="."]
-margin_left = 261.0
-margin_top = 17.0
-margin_right = 340.0
-margin_bottom = 37.0
+[node name="NewGameButton" type="Button" parent="VBoxContainer"]
+margin_right = 360.0
+margin_bottom = 20.0
 text = "New game"
 
-[node name="ScoreCommodity" parent="." instance=ExtResource( 3 )]
+[node name="ScoreCommodity" parent="VBoxContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 24.0
+margin_right = 360.0
+margin_bottom = 56.0
 commodity_name = "Score"
 commodity_id = "score"
 
-[connection signal="pressed" from="ScorePerlClickRow/ScorePerClickUpgradeButton" to="." method="_on_ScorePerClickUpgradeButton_pressed"]
-[connection signal="pressed" from="AutoClickerRow/AutoClickUpgradeButton" to="." method="_on_AutoClickUpgradeButton_pressed"]
-[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
-[connection signal="pressed" from="NewGameButton" to="." method="_on_NewGameButton_pressed"]
+[node name="ScoreClickFactory" parent="VBoxContainer" instance=ExtResource( 4 )]
+margin_top = 60.0
+factory_name = "Click me"
+factory_id = "clickfactory"
+generated_commodities = {
+"score": 1.0
+}
+generated_commodity_multiplier = 2
+upgrade_cost = {
+"score": 50.0
+}
+upgrade_multiplier = 1.2
+
+[connection signal="pressed" from="VBoxContainer/NewGameButton" to="." method="_on_NewGameButton_pressed"]

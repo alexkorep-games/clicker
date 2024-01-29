@@ -30,7 +30,8 @@ var _last_generate_time := 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	add_to_group("Factory")
+	get_node("%NameLabel").text = name
 
 func _find_commodity(commodity_id) -> Node:
 	var commodities := get_tree().get_nodes_in_group("Commodity")
@@ -79,9 +80,41 @@ func generate():
 		commodity.amount += generated_commodities[commodity_id]*generate_multiplier
 
 func _process(_delta):
+	update_ui()
 	if not automatic:
 		return
 	var time = OS.get_ticks_msec()
 	if time - _last_generate_time > 1000:
 		_last_generate_time = time
 		generate()
+
+
+func save(json_obj):
+	if not "factory" in json_obj:
+		json_obj["factory"] = {}
+	json_obj["factory"][factory_id] = {
+		"level": _level
+	}
+
+func load(json_obj):
+	if not "factory" in json_obj:
+		return
+	if not factory_id in json_obj["factory"]:
+		return
+	var factory = json_obj["factory"][factory_id]
+	_level = factory["level"]
+
+func reset():
+	_level = 1
+	_last_generate_time = 0
+
+func update_ui():
+	get_node("%LevelLabel").text = str(_level)
+	get_node("%UpgradeButton").disabled = not can_upgrade()
+	get_node("%GenerateButton").visible = not automatic
+
+func _on_UpgradeButton_pressed():
+	upgrade()
+	
+func _on_GenerateButton_pressed():
+	generate()
