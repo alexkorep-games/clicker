@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scenes/main.gd" type="Script" id=2]
 [ext_resource path="res://scenes/commodity/commodity.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/factory/factory.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/factory/factory_with_ui.tscn" type="PackedScene" id=4]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0

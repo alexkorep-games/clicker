@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/factory/factory.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/factory/factory_with_ui.gd" type="Script" id=2]
+
+[node name="FactoryWithUI" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." index="0"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" index="0"]
+margin_right = 46.0
+margin_bottom = 60.0
+
+[node name="NameLabel" type="Label" parent="HBoxContainer/VBoxContainer" index="0"]
+unique_name_in_owner = true
+margin_right = 46.0
+margin_bottom = 14.0
+text = "Name"
+
+[node name="LevelLabel" type="Label" parent="HBoxContainer/VBoxContainer" index="1"]
+unique_name_in_owner = true
+margin_top = 18.0
+margin_right = 46.0
+margin_bottom = 32.0
+text = "Level 1"
+
+[node name="UpgradeButton" type="Button" parent="HBoxContainer" index="1"]
+unique_name_in_owner = true
+margin_left = 50.0
+margin_right = 115.0
+margin_bottom = 60.0
+text = "Upgrade"
+
+[node name="GenerateButton" type="Button" parent="HBoxContainer" index="2"]
+unique_name_in_owner = true
+margin_left = 119.0
+margin_right = 190.0
+margin_bottom = 60.0
+text = "Generate"
+
+[connection signal="pressed" from="HBoxContainer/UpgradeButton" to="." method="_on_UpgradeButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/GenerateButton" to="." method="_on_GenerateButton_pressed"]

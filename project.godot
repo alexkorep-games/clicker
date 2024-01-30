@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/custom_node_icons/commodity_control.gd"
 }, {
+"base": "FactoryControl",
+"class": "Factory",
+"language": "GDScript",
+"path": "res://scenes/factory/factory.gd"
+}, {
 "base": "Control",
 "class": "FactoryControl",
 "language": "GDScript",
@@ -21,6 +26,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "CommodityControl": "",
+"Factory": "",
 "FactoryControl": ""
 }
 
