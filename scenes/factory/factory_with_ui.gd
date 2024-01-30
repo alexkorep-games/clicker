@@ -1,7 +1,7 @@
 extends Factory
 
 func _ready():
-	get_node("%NameLabel").text = name
+	get_node("%NameLabel").text = factory_name
 
 func _process(_delta):
 	update_ui()

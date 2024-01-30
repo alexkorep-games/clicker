@@ -8,6 +8,9 @@ func _process(_delta):
 	pass
 
 func _on_NewGameButton_pressed():
+	get_node("%ConfirmationDialog").show()
+	
+func new_game():
 	for node in get_tree().get_nodes_in_group("Commodity"):
 		node.reset()
 	for node in get_tree().get_nodes_in_group("Factory"):
@@ -39,3 +42,7 @@ func load_state():
 
 func _on_SaveTimer_timeout():
 	save_state()
+
+
+func _on_ConfirmationDialog_confirmed():
+	new_game()

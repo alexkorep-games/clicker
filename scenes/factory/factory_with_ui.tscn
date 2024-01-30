@@ -11,7 +11,12 @@ rect_min_size = Vector2( 0, 93 )
 size_flags_horizontal = 7
 script = ExtResource( 2 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." index="0"]
+[node name="ColorRect" type="ColorRect" parent="." index="0"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 0.890196, 0.784314, 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." index="1"]
 margin_left = 8.0
 margin_top = 8.0
 margin_right = -8.0
@@ -28,6 +33,7 @@ margin_bottom = 14.0
 unique_name_in_owner = true
 margin_right = 38.0
 margin_bottom = 14.0
+custom_colors/font_color = Color( 0.439216, 0.219608, 0.0588235, 1 )
 text = "Name"
 
 [node name="LevelLabel" type="Label" parent="VBoxContainer/HBoxContainer2" index="1"]
@@ -35,6 +41,7 @@ unique_name_in_owner = true
 margin_left = 42.0
 margin_right = 88.0
 margin_bottom = 14.0
+custom_colors/font_color = Color( 0.305882, 0.172549, 0.0431373, 1 )
 text = "Level 1"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" index="1"]
@@ -49,6 +56,7 @@ margin_bottom = 56.0
 [node name="NameLabel" type="Label" parent="VBoxContainer/HBoxContainer/UpgradePriceContainer" index="0"]
 margin_right = 74.0
 margin_bottom = 14.0
+custom_colors/font_color = Color( 0.0588235, 0.286275, 0.439216, 1 )
 text = "Upgrade for"
 
 [node name="UpgradePriceLabel" type="Label" parent="VBoxContainer/HBoxContainer/UpgradePriceContainer" index="1"]
@@ -56,6 +64,7 @@ unique_name_in_owner = true
 margin_top = 18.0
 margin_right = 74.0
 margin_bottom = 32.0
+custom_colors/font_color = Color( 0.0588235, 0.286275, 0.439216, 1 )
 text = "xxx"
 
 [node name="UpgradeButton" type="Button" parent="VBoxContainer/HBoxContainer/UpgradePriceContainer" index="2"]
@@ -73,6 +82,7 @@ margin_bottom = 56.0
 [node name="NameLabel" type="Label" parent="VBoxContainer/HBoxContainer/ConsumesContainer" index="0"]
 margin_right = 67.0
 margin_bottom = 14.0
+custom_colors/font_color = Color( 0.305882, 0.172549, 0.0431373, 1 )
 text = "Consumes"
 
 [node name="ConsumeLabel" type="Label" parent="VBoxContainer/HBoxContainer/ConsumesContainer" index="1"]
@@ -80,6 +90,7 @@ unique_name_in_owner = true
 margin_top = 18.0
 margin_right = 67.0
 margin_bottom = 32.0
+custom_colors/font_color = Color( 0.439216, 0.219608, 0.0588235, 1 )
 text = "xxx"
 
 [node name="GenerateButton" type="Button" parent="VBoxContainer/HBoxContainer" index="2"]
@@ -97,6 +108,7 @@ margin_bottom = 56.0
 [node name="NameLabel" type="Label" parent="VBoxContainer/HBoxContainer/GeneratesContainer" index="0"]
 margin_right = 66.0
 margin_bottom = 14.0
+custom_colors/font_color = Color( 0.305882, 0.172549, 0.0431373, 1 )
 text = "Generates"
 
 [node name="GenerateLabel" type="Label" parent="VBoxContainer/HBoxContainer/GeneratesContainer" index="1"]
@@ -104,6 +116,7 @@ unique_name_in_owner = true
 margin_top = 18.0
 margin_right = 66.0
 margin_bottom = 32.0
+custom_colors/font_color = Color( 0.439216, 0.219608, 0.0588235, 1 )
 text = "xxx"
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/UpgradePriceContainer/UpgradeButton" to="." method="_on_UpgradeButton_pressed"]

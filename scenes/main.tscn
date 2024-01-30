@@ -4,10 +4,15 @@
 [ext_resource path="res://scenes/commodity/commodity.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/factory/factory_with_ui.tscn" type="PackedScene" id=4]
 
-[node name="Control" type="Control"]
+[node name="Main" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
@@ -23,15 +28,15 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 24.0
 margin_right = 360.0
-margin_bottom = 56.0
+margin_bottom = 62.0
 commodity_name = "Score"
 commodity_id = "score"
 
 [node name="ScoreClickFactory" parent="VBoxContainer" instance=ExtResource( 4 )]
 anchor_right = 0.0
-margin_top = 60.0
+margin_top = 66.0
 margin_right = 360.0
-margin_bottom = 153.0
+margin_bottom = 159.0
 factory_name = "Click me"
 factory_id = "clickfactory"
 generated_commodities = {
@@ -46,9 +51,9 @@ initial_level = 1
 
 [node name="ScoreAutoClickFactory" parent="VBoxContainer" instance=ExtResource( 4 )]
 anchor_right = 0.0
-margin_top = 157.0
+margin_top = 163.0
 margin_right = 360.0
-margin_bottom = 250.0
+margin_bottom = 256.0
 factory_name = "Auto-clicker"
 factory_id = "autoclickfactory"
 automatic = true
@@ -64,5 +69,17 @@ upgrade_multiplier = 1.7
 [node name="SaveTimer" type="Timer" parent="."]
 autostart = true
 
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+unique_name_in_owner = true
+margin_left = 33.0
+margin_top = 209.0
+margin_right = 333.0
+margin_bottom = 349.0
+rect_min_size = Vector2( 300, 140 )
+dialog_text = "You will lose all your belongings, everything you collected over the long hours. Are you really sure?
+Should I go ahead and start a new game?"
+dialog_autowrap = true
+
 [connection signal="pressed" from="VBoxContainer/NewGameButton" to="." method="_on_NewGameButton_pressed"]
 [connection signal="timeout" from="SaveTimer" to="." method="_on_SaveTimer_timeout"]
+[connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_ConfirmationDialog_confirmed"]
