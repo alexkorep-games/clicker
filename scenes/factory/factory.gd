@@ -24,6 +24,8 @@ export var upgrade_cost := {}
 # The multiplier of the amount of commodities that are need to upgrade to the next level
 export var upgrade_multiplier := 1.5
 
+export var initial_level := 0
+
 # Current level
 var _level := 1
 
@@ -31,6 +33,7 @@ var _last_generate_time := 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	_level = initial_level
 	add_to_group("Factory")
 
 func _find_commodity(commodity_id) -> Node:
@@ -40,11 +43,14 @@ func _find_commodity(commodity_id) -> Node:
 			return commodity
 	return null
 
-func can_upgrade():
+func get_current_upgrade_cost(commodity_id):
 	var multiplier := pow(upgrade_multiplier, _level + 1)
+	return upgrade_cost[commodity_id] * multiplier
+
+func can_upgrade():
 	for commodity_id in upgrade_cost:
 		var commodity := _find_commodity(commodity_id)
-		if commodity.amount < upgrade_cost[commodity_id] * multiplier:
+		if commodity.amount < get_current_upgrade_cost(commodity_id):
 			return false
 	return true
 
@@ -57,14 +63,18 @@ func upgrade():
 		var commodity := _find_commodity(commodity_id)
 		commodity.amount -= upgrade_cost[commodity_id] * multiplier
 
-func _get_consume_multiplier() -> float:
-	return pow(consumed_commodity_multiplier, _level - 1)
+func get_current_consumed_amount(commodity_id) -> int:
+	var multiplier = pow(consumed_commodity_multiplier, _level - 1)
+	return consumed_commodities[commodity_id] * multiplier
+	
+func get_current_generated_amount(commodity_id) -> int:
+	var generate_multiplier := pow(generated_commodity_multiplier, _level - 1)
+	return generated_commodities[commodity_id] * generate_multiplier
 
 func can_generate():
-	var multiplier := _get_consume_multiplier()
 	for commodity_id in consumed_commodities:
 		var commodity := _find_commodity(commodity_id)
-		if commodity.amount < consumed_commodities[commodity_id] * multiplier:
+		if commodity.amount < get_current_consumed_amount(commodity_id):
 			return false
 	return true
 
@@ -72,15 +82,13 @@ func generate():
 	if not can_generate():
 		return
 
-	var consume_multiplier := _get_consume_multiplier()
 	for commodity_id in consumed_commodities:
 		var commodity := _find_commodity(commodity_id)
-		commodity.amount -= consumed_commodities[commodity_id] * consume_multiplier
+		commodity.amount -= get_current_consumed_amount(commodity_id)
 
-	var generate_multiplier := pow(generated_commodity_multiplier, _level - 1)
 	for commodity_id in generated_commodities:
 		var commodity := _find_commodity(commodity_id)
-		commodity.amount += generated_commodities[commodity_id]*generate_multiplier
+		commodity.amount += get_current_generated_amount(commodity_id)
 
 func _process(_delta):
 	if not automatic:

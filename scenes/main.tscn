@@ -28,15 +28,34 @@ commodity_name = "Score"
 commodity_id = "score"
 
 [node name="ScoreClickFactory" parent="VBoxContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
 margin_top = 60.0
+margin_right = 360.0
+margin_bottom = 140.0
 factory_name = "Click me"
 factory_id = "clickfactory"
 generated_commodities = {
 "score": 1.0
 }
-generated_commodity_multiplier = 2
 upgrade_cost = {
 "score": 50.0
+}
+upgrade_multiplier = 1.2
+initial_level = 1
+
+[node name="ScoreAutoClickFactory" parent="VBoxContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+margin_top = 144.0
+margin_right = 360.0
+margin_bottom = 224.0
+factory_name = "Auto-clicker"
+factory_id = "autoclickfactory"
+automatic = true
+generated_commodities = {
+"score": 1.0
+}
+upgrade_cost = {
+"score": 100.0
 }
 upgrade_multiplier = 1.2
 
