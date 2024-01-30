@@ -28,7 +28,7 @@ func update_ui():
 		var amount = get_current_consumed_amount(commodity_id)
 		var commodity = _find_commodity(commodity_id)
 		var commodity_name = commodity.commodity_name
-		text += str(amount) + " " + commodity_name + "\n"
+		text += str(amount) + " " + commodity_name + ("/sec" if automatic else "") + "\n"
 	consume_price_label.text = text
 
 	# Generates
@@ -38,7 +38,7 @@ func update_ui():
 		var amount = get_current_generated_amount(commodity_id)
 		var commodity = _find_commodity(commodity_id)
 		var commodity_name = commodity.commodity_name
-		text += str(amount) + " " + commodity_name + "\n"
+		text += str(amount) + " " + commodity_name + ("/sec" if automatic else "") + "\n"
 	generate_price_label.text = text
 
 func _on_UpgradeButton_pressed():

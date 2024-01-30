@@ -37,8 +37,9 @@ factory_id = "clickfactory"
 generated_commodities = {
 "score": 1.0
 }
+generated_commodity_multiplier = 1.2
 upgrade_cost = {
-"score": 50.0
+"score": 10.0
 }
 upgrade_multiplier = 1.2
 initial_level = 1
@@ -54,6 +55,7 @@ automatic = true
 generated_commodities = {
 "score": 1.0
 }
+generated_commodity_multiplier = 1.2
 upgrade_cost = {
 "score": 100.0
 }

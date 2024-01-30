@@ -10,13 +10,13 @@ export var automatic := false
 export var generated_commodities := {}
 
 # The multiplier of commodities that are generated, per level
-export var generated_commodity_multiplier := 1
+export var generated_commodity_multiplier := 1.0
 
 # Map with the commodity id as key and the amount of the commodity as value.
 export var consumed_commodities := {}
 
 # The multiplier of commodities that are consumed, per level
-export var consumed_commodity_multiplier := 1
+export var consumed_commodity_multiplier := 1.0
 
 # The amount of commodities that are need to upgrade from 0 to 1st level
 export var upgrade_cost := {}
@@ -68,7 +68,12 @@ func get_current_consumed_amount(commodity_id) -> int:
 	return consumed_commodities[commodity_id] * multiplier
 	
 func get_current_generated_amount(commodity_id) -> int:
-	var generate_multiplier := pow(generated_commodity_multiplier, _level - 1)
+	""" 
+	Returns the amount of commodities that are generated per second at the current level.
+	If level is 0, it returns the amount of commodities that are generated when the factory is at level 1.
+	"""
+	var level = _level if _level > 0 else 1
+	var generate_multiplier := pow(generated_commodity_multiplier, level - 1)
 	return generated_commodities[commodity_id] * generate_multiplier
 
 func can_generate():
@@ -79,7 +84,7 @@ func can_generate():
 	return true
 
 func generate():
-	if not can_generate():
+	if not can_generate() or _level < 1:
 		return
 
 	for commodity_id in consumed_commodities:
