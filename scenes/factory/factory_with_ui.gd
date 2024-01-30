@@ -13,33 +13,35 @@ func update_ui():
 
 	# Upgrade
 	var upgrade_price_label = get_node("%UpgradePriceLabel")
-	var text = ""
+	var texts = []
 	for commodity_id in upgrade_cost:
 		var amount = get_current_upgrade_cost(commodity_id)
 		var commodity = _find_commodity(commodity_id)
 		var commodity_name = commodity.commodity_name
-		text += str(amount) + " " + commodity_name + "\n"
-	upgrade_price_label.text = text
+		texts.append(str(amount) + " " + commodity_name)
+	upgrade_price_label.text = "\n".join(texts)
 
 	# Consumes
 	var consume_price_label = get_node("%ConsumeLabel")
-	text = ""
+	texts = []
 	for commodity_id in consumed_commodities:
 		var amount = get_current_consumed_amount(commodity_id)
 		var commodity = _find_commodity(commodity_id)
 		var commodity_name = commodity.commodity_name
-		text += str(amount) + " " + commodity_name + ("/sec" if automatic else "") + "\n"
-	consume_price_label.text = text
+		texts.append(str(amount) + " " + commodity_name + ("/sec" if automatic else ""))
+	consume_price_label.text = "\n".join(texts)
 
 	# Generates
 	var generate_price_label = get_node("%GenerateLabel")
-	text = ""
+	texts = []
 	for commodity_id in generated_commodities:
 		var amount = get_current_generated_amount(commodity_id)
 		var commodity = _find_commodity(commodity_id)
 		var commodity_name = commodity.commodity_name
-		text += str(amount) + " " + commodity_name + ("/sec" if automatic else "") + "\n"
-	generate_price_label.text = text
+		texts.append(str(amount) + " " + commodity_name + ("/sec" if automatic else ""))
+	generate_price_label.text = "\n".join(texts)
+
+	
 
 func _on_UpgradeButton_pressed():
 	upgrade()

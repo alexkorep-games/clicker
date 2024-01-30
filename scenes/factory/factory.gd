@@ -33,7 +33,7 @@ var _last_generate_time := 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_level = initial_level
+	reset()
 	add_to_group("Factory")
 
 func _find_commodity(commodity_id) -> Node:
@@ -120,5 +120,5 @@ func load(json_obj):
 	_level = factory["level"]
 
 func reset():
-	_level = 1
+	_level = initial_level
 	_last_generate_time = 0
