@@ -1,4 +1,4 @@
-extends Control
+extends FactoryControl
 
 export var factory_name := "Factory name"
 export var factory_id := "factory_id"
@@ -44,15 +44,15 @@ func can_upgrade():
 	var multiplier := pow(upgrade_multiplier, _level + 1)
 	for commodity_id in upgrade_cost:
 		var commodity := _find_commodity(commodity_id)
-		if commodity.amount < upgrade_cost[commodity_id]*multiplier:
+		if commodity.amount < upgrade_cost[commodity_id] * multiplier:
 			return false
 	return true
 
 func upgrade():
 	if not can_upgrade():
 		return
-	_level += 1
 	var multiplier := pow(upgrade_multiplier, _level + 1)
+	_level += 1
 	for commodity_id in upgrade_cost:
 		var commodity := _find_commodity(commodity_id)
 		commodity.amount -= upgrade_cost[commodity_id] * multiplier

@@ -1,4 +1,4 @@
-extends Control
+extends CommodityControl
 
 export var commodity_name := ""
 export var commodity_id := ""
