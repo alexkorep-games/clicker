@@ -10,6 +10,7 @@ func update_ui():
 	get_node("%LevelLabel").text = "Level " + str(_level)
 	get_node("%UpgradeButton").disabled = not can_upgrade()
 	get_node("%GenerateButton").visible = not automatic
+	get_node("%GenerateButton").disabled = _level <= 0
 
 	# Upgrade
 	var upgrade_price_label = get_node("%UpgradePriceLabel")

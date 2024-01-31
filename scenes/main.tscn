@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
+[ext_resource path="res://scenes/factory/factory_with_ui.gd" type="Script" id=1]
 [ext_resource path="res://scenes/main.gd" type="Script" id=2]
 [ext_resource path="res://scenes/commodity/commodity.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/factory/factory_with_ui.tscn" type="PackedScene" id=4]
@@ -65,6 +66,35 @@ upgrade_cost = {
 "score": 50.0
 }
 upgrade_multiplier = 1.7
+
+[node name="CoinMakerFactory" parent="VBoxContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+margin_top = 260.0
+margin_right = 360.0
+margin_bottom = 353.0
+script = ExtResource( 1 )
+factory_name = "Make a coin or two"
+factory_id = "coinfactory"
+generated_commodities = {
+"coin": 1.0
+}
+generated_commodity_multiplier = 1.5
+consumed_commodities = {
+"score": 500.0
+}
+upgrade_cost = {
+"score": 1000.0
+}
+upgrade_multiplier = 1.6
+
+[node name="CoinCommodity2" parent="VBoxContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 357.0
+margin_right = 360.0
+margin_bottom = 395.0
+commodity_name = "Coin"
+commodity_id = "coin"
 
 [node name="SaveTimer" type="Timer" parent="."]
 autostart = true

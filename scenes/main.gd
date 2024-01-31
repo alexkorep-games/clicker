@@ -39,10 +39,8 @@ func load_state():
 		for node in get_tree().get_nodes_in_group("Factory"):
 			node.load(save_data)
 
-
 func _on_SaveTimer_timeout():
 	save_state()
-
 
 func _on_ConfirmationDialog_confirmed():
 	new_game()
